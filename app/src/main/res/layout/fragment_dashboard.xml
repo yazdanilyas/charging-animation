@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.DashboardFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/openDrawerImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:padding="@dimen/_10dp"
+        android:src="@drawable/ic_drawer_open"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/animationsCv"
         android:layout_width="150dp"

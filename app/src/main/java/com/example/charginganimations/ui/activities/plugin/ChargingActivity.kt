@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.bumptech.glide.Glide
 import com.example.charginganimations.databinding.ActivityChargingBinding
 import com.example.charginganimations.utils.CommonKeys
@@ -26,9 +27,10 @@ class ChargingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityChargingBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        val localBroadcastManager = LocalBroadcastManager.getInstance(this)
         val filter = IntentFilter()
         filter.addAction("ACTION_FINISH")
-        registerReceiver(activityFinishReceiver, filter)
+        localBroadcastManager.registerReceiver(activityFinishReceiver, filter)
         showAnimation()
     }
 

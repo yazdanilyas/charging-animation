@@ -17,13 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChargingAnimations">
         <activity
+            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.plugin.ChargingActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.animationpreview.AnimationPreviewActivity"
             android:exported="false" />
 
         <activity
+            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -34,9 +37,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.animations.AnimationsActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.dashboard.DashboardActivity"
             android:exported="false" />
 

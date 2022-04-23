@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.charginganimations.ui.activities.plugin.ChargingActivity
 
 class PowerConnectionReceiver : BroadcastReceiver() {
@@ -18,6 +19,8 @@ class PowerConnectionReceiver : BroadcastReceiver() {
             }
             Intent.ACTION_POWER_DISCONNECTED -> {
                 Toast.makeText(context, "desconnedt", Toast.LENGTH_LONG).show()
+                val localBroadcastManager = context?.let { LocalBroadcastManager.getInstance(it) }
+                localBroadcastManager?.sendBroadcast(Intent("ACTION_FINISH"))
             }
         }
 
