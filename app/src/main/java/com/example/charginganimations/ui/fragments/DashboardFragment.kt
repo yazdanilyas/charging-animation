@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.charginganimations.R
 import com.example.charginganimations.databinding.FragmentDashboardBinding
+import com.example.charginganimations.ui.activities.SettingActivity
 import com.example.charginganimations.ui.activities.animations.AnimationsActivity
 import com.example.charginganimations.ui.activities.batteryinfo.BatteryInfoActivity
 
@@ -64,6 +65,9 @@ class DashboardFragment : Fragment() {
         }
         mBinding.batteryInfoCv.setOnClickListener {
             startActivity(Intent(activity, BatteryInfoActivity::class.java))
+        }
+        mBinding.settingsCv.setOnClickListener {
+            startActivity(Intent(activity, SettingActivity::class.java))
         }
     }
 

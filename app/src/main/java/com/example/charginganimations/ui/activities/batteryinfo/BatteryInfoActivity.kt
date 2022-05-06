@@ -20,6 +20,11 @@ class BatteryInfoActivity : AppCompatActivity() {
         registerBatteryLevelReceiver()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(battery_receiver)
+    }
+
     private fun registerBatteryLevelReceiver() {
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         registerReceiver(battery_receiver, filter)

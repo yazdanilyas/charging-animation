@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChargingAnimations">
         <activity
+            android:name=".ui.activities.SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.plugin.ChargingActivity"
             android:exported="false"
             android:theme="@style/FullScreenActivity" />
