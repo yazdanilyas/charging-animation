@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.charginganimations.R
 import com.example.charginganimations.databinding.FragmentDashboardBinding
 import com.example.charginganimations.ui.activities.animations.AnimationsActivity
+import com.example.charginganimations.ui.activities.batteryinfo.BatteryInfoActivity
 
 
 private const val ARG_PARAM1 = "param1"
@@ -60,6 +61,9 @@ class DashboardFragment : Fragment() {
     private fun setListeners() {
         mBinding.animationsCv.setOnClickListener {
             startActivity(Intent(activity, AnimationsActivity::class.java))
+        }
+        mBinding.batteryInfoCv.setOnClickListener {
+            startActivity(Intent(activity, BatteryInfoActivity::class.java))
         }
     }
 

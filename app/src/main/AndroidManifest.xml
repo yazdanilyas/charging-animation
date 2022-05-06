@@ -17,19 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChargingAnimations">
         <activity
-            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.plugin.ChargingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreenActivity" />
         <activity
-            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.animationpreview.AnimationPreviewActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:theme="@style/FullScreenActivity" />
         <activity
-            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.splash.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,17 +36,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.animations.AnimationsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreenActivity" />
         <activity
-            android:theme="@style/FullScreenActivity"
             android:name=".ui.activities.dashboard.DashboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreenActivity" />
+        <activity
+            android:name=".ui.activities.batteryinfo.BatteryInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenActivity" />
 
         <service
             android:name=".services.ChargingService"
             android:exported="true" />
+
         <receiver android:name=".receivers.PowerConnectionReceiver" />
     </application>
 
