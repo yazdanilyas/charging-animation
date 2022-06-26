@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.charginganimations.R
 import com.example.charginganimations.databinding.FragmentDashboardBinding
 import com.example.charginganimations.ui.activities.SettingActivity
-import com.example.charginganimations.ui.activities.animations.AnimationsActivity
+import com.example.charginganimations.ui.activities.animations.AnimationsCategoryActivity
 import com.example.charginganimations.ui.activities.batteryinfo.BatteryInfoActivity
 import com.example.charginganimations.utils.CommonKeys
 import com.example.charginganimations.utils.PrefUtils
@@ -65,7 +65,7 @@ class DashboardFragment : Fragment() {
 
     private fun setListeners() {
         mBinding.animationsCv.setOnClickListener {
-            startActivity(Intent(activity, AnimationsActivity::class.java))
+            startActivity(Intent(activity, AnimationsCategoryActivity::class.java))
         }
         mBinding.batteryInfoCv.setOnClickListener {
             startActivity(Intent(activity, BatteryInfoActivity::class.java))

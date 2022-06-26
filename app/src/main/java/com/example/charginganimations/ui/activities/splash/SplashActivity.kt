@@ -1,5 +1,6 @@
 package com.example.charginganimations.ui.activities.splash
 
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.charginganimations.databinding.ActivitySplashBinding
 import com.example.charginganimations.ui.activities.dashboard.DashboardActivity
 import com.example.charginganimations.utils.Constants
+import com.example.charginganimations.utils.DialogUtils
 
 
 class SplashActivity : AppCompatActivity() {
@@ -19,13 +21,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        val intent = Intent(
-            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:${packageName}")
-        )
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY)
-
-        startActivity(intent)
         showStartButton()
         setListeners()
 
@@ -33,7 +29,28 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setListeners() {
         mBinding.getStartedButton.setOnClickListener {
-            startActivity(Intent(this, DashboardActivity::class.java))
+            if (Settings.canDrawOverlays(this@SplashActivity)) {
+
+                startActivity(Intent(this, DashboardActivity::class.java))
+            } else {
+                DialogUtils.overLayPermissionDialog(this@SplashActivity,
+                    object : DialogUtils.DialogCallBack {
+                        override fun onPositiveCallBack(dialog: Dialog) {
+                            dialog.dismiss()
+                            val intent = Intent(
+                                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                Uri.parse("package:${packageName}")
+                            )
+                            startActivity(intent)
+
+                        }
+
+                        override fun onNegativeCallBack() {
+
+                        }
+
+                    })
+            }
         }
     }
 

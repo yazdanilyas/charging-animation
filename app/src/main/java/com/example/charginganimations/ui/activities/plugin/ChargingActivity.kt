@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.bumptech.glide.Glide
 import com.example.charginganimations.databinding.ActivityChargingBinding
 import com.example.charginganimations.utils.CommonKeys
 import com.example.charginganimations.utils.PrefUtils
@@ -36,7 +35,8 @@ class ChargingActivity : AppCompatActivity() {
 
     private fun showAnimation() {
         val animGif = PrefUtils.getInt(this@ChargingActivity, CommonKeys.KEY_ANIM_GIF)
-        Glide.with(this).asGif().load(animGif).into(mBinding.animationImg)
+        mBinding.animationView.setAnimation(animGif)
+//        Glide.with(this).asGif().load(animGif).into(mBinding.animationImg)
     }
 
     override fun onDestroy() {

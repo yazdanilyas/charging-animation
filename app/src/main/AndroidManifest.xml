@@ -20,6 +20,9 @@
             android:name=".ui.activities.SettingActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activities.allanims.AllAnimationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.plugin.ChargingActivity"
             android:exported="false"
             android:theme="@style/FullScreenActivity" />
@@ -39,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.animations.AnimationsActivity"
+            android:name=".ui.activities.animations.AnimationsCategoryActivity"
             android:exported="false"
             android:theme="@style/FullScreenActivity" />
         <activity

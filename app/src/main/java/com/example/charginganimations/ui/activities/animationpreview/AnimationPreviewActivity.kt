@@ -3,10 +3,8 @@ package com.example.charginganimations.ui.activities.animationpreview
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.charginganimations.databinding.ActivityAnimationPreviewBinding
 import com.example.charginganimations.utils.CommonKeys
-import com.example.charginganimations.utils.DialogUtils
 import com.example.charginganimations.utils.PrefUtils
 
 class AnimationPreviewActivity : AppCompatActivity() {
@@ -22,7 +20,7 @@ class AnimationPreviewActivity : AppCompatActivity() {
 
     private fun setListeners() {
         mBinding.applyAnimButton.setOnClickListener {
-            DialogUtils.withItems(this@AnimationPreviewActivity, null)
+//            DialogUtils.withItems(this@AnimationPreviewActivity, null)
             PrefUtils.setInt(this@AnimationPreviewActivity, CommonKeys.KEY_ANIM_GIF, animGif)
             Toast.makeText(this, "Animation applied", Toast.LENGTH_LONG).show()
         }
@@ -30,6 +28,7 @@ class AnimationPreviewActivity : AppCompatActivity() {
 
     private fun previewAnimation() {
         animGif = intent.extras?.getInt(CommonKeys.KEY_ANIM_GIF)!!
-        Glide.with(this).asGif().load(animGif).into(mBinding.animationImg)
+        mBinding.animationView.setAnimation(animGif)
+//        Glide.with(this).asGif().load(animGif).into(mBinding.animationImg)
     }
 }

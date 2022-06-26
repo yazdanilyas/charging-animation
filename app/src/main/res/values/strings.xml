@@ -9,4 +9,11 @@
     <string name="share_app">Share App</string>
     <string name="more_app">More Apps</string>
     <string name="policy">Privacy Policy</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="animations">Animations</string>
+    <string name="birds_animations">Birds Animations</string>
+    <string name="heart_animations">Heart Animations</string>
+    <string name="circle_animations">Circle Animations</string>
+    <string name="flowers_animations">Flowers Animations</string>
 </resources>

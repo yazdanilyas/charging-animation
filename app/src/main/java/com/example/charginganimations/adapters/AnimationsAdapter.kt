@@ -34,7 +34,7 @@ class AnimationsAdapter(
 
     override fun onBindViewHolder(holder: AnimationsViewHolder, position: Int) {
         holder.binding.animDrawable = animationList[position]
-        holder.binding.animationThumbImg.setOnClickListener {
+        holder.binding.animationView.setOnClickListener {
             recyclerItemClickListener.onClick(animationList[position])
         }
         Log.d("TAGG", "onBindViewHolder: ${animationList[position]}")
