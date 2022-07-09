@@ -22,59 +22,103 @@ class BatteryInfoActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(battery_receiver)
+        unregisterReceiver(batteryReceiver)
     }
 
     private fun registerBatteryLevelReceiver() {
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
-        registerReceiver(battery_receiver, filter)
+        registerReceiver(batteryReceiver, filter)
     }
 
-    private val battery_receiver: BroadcastReceiver = object : BroadcastReceiver() {
+    private val batteryReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
-            val isPresent = intent.getBooleanExtra("present", false)
-            val technology = intent.getStringExtra("technology")
-            val plugged = intent.getIntExtra("plugged", -1)
-            val scale = intent.getIntExtra("scale", -1)
-            val health = intent.getIntExtra("health", 0)
-            val status = intent.getIntExtra("status", 0)
-            val rawlevel = intent.getIntExtra("level", -1)
-            val voltage = intent.getIntExtra("voltage", 0)
-            val temperature = intent.getIntExtra("temperature", 0)
+//            val isPresent = intent.getBooleanExtra("present", false)
+//            val technology = intent.getStringExtra("technology")
+//            val plugged = intent.getIntExtra("plugged", -1)
+//            val scale = intent.getIntExtra("scale", -1)
+//            val health = intent.getIntExtra("health", 0)
+//            val status = intent.getIntExtra("status", 0)
+//            val rawlevel = intent.getIntExtra("level", -1)
+//            val voltage = intent.getIntExtra("voltage", 0)
+//            val temperature = intent.getIntExtra("temperature", 0)
+
+            val isPresent = intent.extras?.getBoolean(BatteryManager.EXTRA_PRESENT, false)
+            val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+            val rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+            val health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
+            val icon_small = intent.getIntExtra(BatteryManager.EXTRA_ICON_SMALL, 0)
+            val plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
+            val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0)
+            val technology = intent.extras?.getString(BatteryManager.EXTRA_TECHNOLOGY).toString()
+            val temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10
+            val voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
+
+
             var level = 0
             val bundle = intent.extras
             Log.i("BatteryLevel", bundle.toString())
-            if (isPresent) {
+            if (isPresent == true) {
                 if (rawlevel >= 0 && scale > 0) {
                     level = rawlevel * 100 / scale
                 }
-                var info = "Battery Level: $level%\n"
-                info += "Technology: $technology\n"
-                info += """
-                Plugged: ${getPlugTypeString(plugged).toString()}
-                
-                """.trimIndent()
-                info += """
-                Health: ${getHealthString(health).toString()}
-                
-                """.trimIndent()
-                info += """
-                Status: ${getStatusString(status).toString()}
-                
-                """.trimIndent()
-                info += "Voltage: $voltage\n"
-                info += "Temperature: $temperature\n"
-                setBatteryLevelText(
-                    """
-                    $info
-                    
-                    ${bundle.toString()}
-                    """.trimIndent()
-                )
-            } else {
-                setBatteryLevelText("Battery not present!!!")
+                setChargingType(plugged)
+                setChargingStatus()
+                mBinding.batteryProgressBar.progress = level
+                mBinding.batteryPercentageTv.text = "${level}%"
+                mBinding.temperatureTv.text = temperature.toString()
+                mBinding.voltageTv.text = voltage.toString()
+                setBatteryHealth()
+                mBinding.technologyTv.text = technology.toString()
+                mBinding.capacityTv.text = technology.toString()
             }
         }
+    }
+
+    private fun setChargingType(plugged: Int) {
+        val usbCharge = plugged == BatteryManager.BATTERY_PLUGGED_USB
+        val acCharge = plugged == BatteryManager.BATTERY_PLUGGED_AC
+        val wireless = plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS
+        var chargingType: String? = null
+        when {
+            usbCharge -> {
+                chargingType = "USB"
+            }
+            acCharge -> {
+                chargingType = "AC Power"
+            }
+            wireless -> {
+                chargingType = "Wireless"
+            }
+
+        }
+
+        mBinding.chargingTypeTv.text = chargingType
+    }
+
+    private fun setChargingStatus() {
+        val statusLbl: String = when (intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
+            BatteryManager.BATTERY_STATUS_CHARGING -> "charging"
+            BatteryManager.BATTERY_STATUS_DISCHARGING -> "discharging"
+            BatteryManager.BATTERY_STATUS_FULL -> "battery full"
+            BatteryManager.BATTERY_STATUS_UNKNOWN -> "-1"
+            BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "discharging"
+            else -> "discharging"
+        }
+
+    }
+
+    private fun setBatteryHealth() {
+        val health = when (intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
+            BatteryManager.BATTERY_HEALTH_COLD -> "Cold"
+            BatteryManager.BATTERY_HEALTH_DEAD -> "Dead"
+            BatteryManager.BATTERY_HEALTH_GOOD -> "Good"
+            BatteryManager.BATTERY_HEALTH_OVERHEAT -> "Over heat"
+            BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> "Over voltage"
+            BatteryManager.BATTERY_HEALTH_UNKNOWN -> "Unknown"
+            BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> "Unspecified failure"
+            else -> "Error"
+        }
+        mBinding.healthTv.text = health
     }
 
     private fun getPlugTypeString(plugged: Int): String? {
@@ -109,7 +153,5 @@ class BatteryInfoActivity : AppCompatActivity() {
         return statusString
     }
 
-    private fun setBatteryLevelText(text: String) {
-        mBinding.infoTv.append("" + text)
-    }
+
 }

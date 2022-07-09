@@ -11,7 +11,7 @@ import com.example.charginganimations.interfaces.RecyclerItemClickListener
 
 class AnimationsAdapter(
     private val animationList: ArrayList<Int>,
-    val recyclerItemClickListener: RecyclerItemClickListener
+    private val recyclerItemClickListener: RecyclerItemClickListener
 ) :
     RecyclerView.Adapter<AnimationsAdapter.AnimationsViewHolder>() {
 
