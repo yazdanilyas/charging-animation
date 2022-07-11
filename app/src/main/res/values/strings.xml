@@ -16,4 +16,15 @@
     <string name="heart_animations">Heart Animations</string>
     <string name="circle_animations">Circle Animations</string>
     <string name="flowers_animations">Flowers Animations</string>
+    <string name="enable_animations">Enable Animations</string>
+    <string name="single_tap">Single Tap</string>
+    <string name="closing_method">Closing method</string>
+    <string name="animation_duration">Animation Duration</string>
+    <string name="settings">Settings</string>
+    <string name="double_tap">Double Tap</string>
+    <string name="ten_seconds">Ten Seconds</string>
+    <string name="twenty_seconds">Twenty Seconds</string>
+    <string name="thirty_seconds">Thirty Seconds</string>
+    <string name="_1_minute">1 minute</string>
+    <string name="always">Always</string>
 </resources>

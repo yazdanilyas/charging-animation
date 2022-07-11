@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tenSecond"
+        android:title="@string/ten_seconds" />
+    <item
+        android:id="@+id/twentySecond"
+        android:title="@string/twenty_seconds" />
+    <item
+        android:id="@+id/thirtySecond"
+        android:title="@string/thirty_seconds" />
+    <item
+        android:id="@+id/oneMinute"
+        android:title="@string/_1_minute" />
+    <item
+        android:id="@+id/always"
+        android:title="@string/always" />
+</menu>

@@ -8,6 +8,7 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.charginganimations.R
 import com.example.charginganimations.receivers.PowerConnectionReceiver
+import com.example.charginganimations.utils.Constants
 
 class ChargingService : Service() {
     private val NOTIFICATION_CHANNEL_ID: String = "chargingChannelId"
@@ -18,7 +19,6 @@ class ChargingService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        createNotification()
         val intentFilter = IntentFilter()
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
         intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
@@ -26,6 +26,11 @@ class ChargingService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (intent?.action.equals(Constants.ACTION_KILL)) {
+            stopForeground(true)
+        } else {
+            createNotification()
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -49,7 +54,7 @@ class ChargingService : Service() {
             notificationManager.createNotificationChannel(notificationChannel)
         }
         val stopActionsIntent = Intent(this, ChargingService::class.java)
-        stopActionsIntent.action = "ACTION_KILL"
+        stopActionsIntent.action = Constants.ACTION_KILL
         val pStopSelf = PendingIntent.getService(
             this,
             0,
