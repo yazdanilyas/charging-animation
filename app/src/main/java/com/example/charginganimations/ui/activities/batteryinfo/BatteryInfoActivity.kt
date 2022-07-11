@@ -32,16 +32,6 @@ class BatteryInfoActivity : AppCompatActivity() {
 
     private val batteryReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
-//            val isPresent = intent.getBooleanExtra("present", false)
-//            val technology = intent.getStringExtra("technology")
-//            val plugged = intent.getIntExtra("plugged", -1)
-//            val scale = intent.getIntExtra("scale", -1)
-//            val health = intent.getIntExtra("health", 0)
-//            val status = intent.getIntExtra("status", 0)
-//            val rawlevel = intent.getIntExtra("level", -1)
-//            val voltage = intent.getIntExtra("voltage", 0)
-//            val temperature = intent.getIntExtra("temperature", 0)
-
             val isPresent = intent.extras?.getBoolean(BatteryManager.EXTRA_PRESENT, false)
             val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
             val rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)

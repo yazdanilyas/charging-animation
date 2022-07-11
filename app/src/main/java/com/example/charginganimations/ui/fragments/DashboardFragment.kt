@@ -1,7 +1,12 @@
 package com.example.charginganimations.ui.fragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.BatteryManager
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +66,12 @@ class DashboardFragment : Fragment() {
         openDrawerView()
         newUserSetting()
         setListeners()
+        registerBatteryLevelReceiver()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireContext().unregisterReceiver(batteryReceiver)
     }
 
     private fun setListeners() {
@@ -92,5 +103,34 @@ class DashboardFragment : Fragment() {
         }
     }
 
+    // Battery level receiver
+    private fun registerBatteryLevelReceiver() {
+        val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+        requireContext().registerReceiver(batteryReceiver, filter)
+    }
+
+    private val batteryReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+
+            val isPresent = intent.extras?.getBoolean(BatteryManager.EXTRA_PRESENT, false)
+            val rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+            val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0)
+
+            var level = 0
+            val bundle = intent.extras
+            Log.i("BatteryLevel", bundle.toString())
+            if (isPresent == true) {
+                if (rawlevel >= 0 && scale > 0) {
+                    level = rawlevel * 100 / scale
+                }
+                mBinding.waveLoadingView.centerTitle = "$level%"
+                mBinding.waveLoadingView.centerTitleColor =
+                    requireContext().getColor(R.color.lightGreen)
+                mBinding.waveLoadingView.setCenterTitleStrokeColor(requireContext().getColor(R.color.lightGreen))
+                mBinding.waveLoadingView.progressValue = level
+
+            }
+        }
+    }
 
 }
