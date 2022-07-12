@@ -144,6 +144,7 @@ class SettingActivity : AppCompatActivity() {
 
         })
         popupMenu.show()
+
     }
 
     private fun startStopAnimationService(switchButtonView: CompoundButton?, isChecked: Boolean) {
