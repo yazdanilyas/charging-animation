@@ -49,7 +49,28 @@ object AnimationDataBuilder {
 
     fun flowersAnimationsBuilder(): ArrayList<Int> {
         val flowersAnimations = ArrayList<Int>()
-        flowersAnimations.add(R.raw.flower_animation_1)
+        flowersAnimations.add(R.raw.flower_1)
+        flowersAnimations.add(R.raw.flower_2)
+        flowersAnimations.add(R.raw.flower_3)
+        flowersAnimations.add(R.raw.flower_4)
+        flowersAnimations.add(R.raw.flower_5)
+        flowersAnimations.add(R.raw.flower_6)
+        flowersAnimations.add(R.raw.flower_7)
+        flowersAnimations.add(R.raw.flower_8)
+        return flowersAnimations;
+    }
+
+    fun animalsAnimationsBuilder(): ArrayList<Int> {
+        val flowersAnimations = ArrayList<Int>()
+        flowersAnimations.add(R.raw.animal_1)
+        flowersAnimations.add(R.raw.animal_2)
+        flowersAnimations.add(R.raw.animal_3)
+        flowersAnimations.add(R.raw.animal_4)
+        flowersAnimations.add(R.raw.animal_5)
+        flowersAnimations.add(R.raw.animal_6)
+        flowersAnimations.add(R.raw.animal_7)
+        flowersAnimations.add(R.raw.animal_8)
+        flowersAnimations.add(R.raw.animal_9)
         return flowersAnimations;
     }
 }

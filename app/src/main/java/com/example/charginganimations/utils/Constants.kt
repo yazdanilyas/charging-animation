@@ -9,4 +9,5 @@ object Constants {
     const val ANIM_CIRCLES = "Circles"
     const val ANIM_HEARTS = "Hearts"
     const val ANIM_FLOWERS = "Flowers"
+    const val ANIM_ANIMALS = "Animals"
 }

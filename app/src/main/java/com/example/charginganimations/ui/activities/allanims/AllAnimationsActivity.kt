@@ -60,6 +60,8 @@ class AllAnimationsActivity : AppCompatActivity() {
             animsDataSet = AnimationDataBuilder.circleAnimationsBuilder()
         } else if (animType == Constants.ANIM_FLOWERS) {
             animsDataSet = AnimationDataBuilder.flowersAnimationsBuilder()
+        } else if (animType == Constants.ANIM_ANIMALS) {
+            animsDataSet = AnimationDataBuilder.animalsAnimationsBuilder()
         }
 
     }

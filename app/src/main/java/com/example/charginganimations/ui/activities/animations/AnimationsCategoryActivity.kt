@@ -33,6 +33,12 @@ class AnimationsCategoryActivity : AppCompatActivity() {
         mBinding.flowersAnimationsBanner.setOnClickListener {
             openAllAnimationsActivity(Constants.ANIM_FLOWERS)
         }
+        mBinding.animalsAnimationsBanner.setOnClickListener {
+            openAllAnimationsActivity(Constants.ANIM_ANIMALS)
+        }
+        mBinding.backBtnImg.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun openAllAnimationsActivity(animType: String) {

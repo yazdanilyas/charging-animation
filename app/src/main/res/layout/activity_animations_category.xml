@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backBtnImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_10dp"
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/animations"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/_25sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -51,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/animalsAnimationView"
+                    android:id="@+id/birdsAnimationView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,38 +69,39 @@
                     android:textSize="@dimen/_20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/animalsAnimationView"
+                    app:layout_constraintStart_toEndOf="@id/birdsAnimationView"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/heartAnimationsBanner"
+                android:id="@+id/animalsAnimationsBanner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_5dp"
                 android:layout_marginTop="@dimen/_5dp"
                 android:background="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/birdsAnimationsBanner">
+                app:layout_constraintTop_toBottomOf="@+id/birdsAnimationsBanner">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/heartAnimationView"
+                    android:id="@+id/animalsAnimationView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/heart_1" />
+                    app:lottie_rawRes="@raw/animal_1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/heart_animations"
+                    android:text="@string/animal_animations"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/heartAnimationView"
+                    app:layout_constraintStart_toEndOf="@id/animalsAnimationView"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,7 +112,7 @@
                 android:layout_marginHorizontal="@dimen/_5dp"
                 android:layout_marginTop="@dimen/_5dp"
                 android:background="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/heartAnimationsBanner">
+                app:layout_constraintTop_toBottomOf="@+id/animalsAnimationsBanner">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/circleAnimationView"
@@ -166,6 +168,36 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/heartAnimationsBanner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/flowersAnimationsBanner">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/heartAnimationView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/heart_1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heart_animations"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/heartAnimationView"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

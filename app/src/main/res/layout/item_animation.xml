@@ -25,13 +25,13 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
+                setAnimation="@{animDrawable}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                setAnimation="@{animDrawable}" />
+                app:lottie_loop="true" />
 
             <!--            <androidx.appcompat.widget.AppCompatImageView-->
             <!--                android:id="@+id/animationThumbImg"-->
