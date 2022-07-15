@@ -28,4 +28,5 @@
     <string name="_1_minute">1 minute</string>
     <string name="always">Always</string>
     <string name="animal_animations">Animal Animations</string>
+    <string name="degreeSymbol">℃</string>
 </resources>

@@ -8,7 +8,9 @@ import android.os.BatteryManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.charginganimations.R
 import com.example.charginganimations.databinding.ActivityBatteryInfoBinding
+import java.text.DecimalFormat
 
 
 class BatteryInfoActivity : AppCompatActivity() {
@@ -55,11 +57,17 @@ class BatteryInfoActivity : AppCompatActivity() {
                 setChargingStatus()
                 mBinding.batteryProgressBar.progress = level
                 mBinding.batteryPercentageTv.text = "${level}%"
-                mBinding.temperatureTv.text = temperature.toString()
-                mBinding.voltageTv.text = voltage.toString()
+
+                val tempDegree = temperature.toString() + getString(R.string.degreeSymbol)
+                mBinding.temperatureTv.text = tempDegree
+
+                val voltageDecimal = (voltage / 1000.0)
+                val decimalFormat = DecimalFormat("##.0")
+                val formattedVoltage = decimalFormat.format(voltageDecimal)
+                mBinding.voltageTv.text = formattedVoltage + " V"
                 setBatteryHealth()
                 mBinding.technologyTv.text = technology.toString()
-                mBinding.capacityTv.text = technology.toString()
+                mBinding.capacityTv.text = getBatteryCapacity().toString() + " mAh"
             }
         }
     }
@@ -78,6 +86,9 @@ class BatteryInfoActivity : AppCompatActivity() {
             }
             wireless -> {
                 chargingType = "Wireless"
+            }
+            else -> {
+                chargingType = "Not Charging"
             }
 
         }
@@ -98,7 +109,7 @@ class BatteryInfoActivity : AppCompatActivity() {
     }
 
     private fun setBatteryHealth() {
-        val health = when (intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
+        val health = when (intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)) {
             BatteryManager.BATTERY_HEALTH_COLD -> "Cold"
             BatteryManager.BATTERY_HEALTH_DEAD -> "Dead"
             BatteryManager.BATTERY_HEALTH_GOOD -> "Good"
@@ -106,7 +117,7 @@ class BatteryInfoActivity : AppCompatActivity() {
             BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> "Over voltage"
             BatteryManager.BATTERY_HEALTH_UNKNOWN -> "Unknown"
             BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> "Unspecified failure"
-            else -> "Error"
+            else -> "Unknown"
         }
         mBinding.healthTv.text = health
     }
@@ -141,6 +152,42 @@ class BatteryInfoActivity : AppCompatActivity() {
             BatteryManager.BATTERY_STATUS_NOT_CHARGING -> statusString = "Not Charging"
         }
         return statusString
+    }
+
+    fun getBatteryCapacity(): Double {
+
+        // Power profile class instance
+        var mPowerProfile_: Any? = null
+
+        // Reset variable for battery capacity
+        var batteryCapacity = 0.0
+
+        // Power profile class name
+        val POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile"
+        try {
+
+            // Get power profile class and create instance. We have to do this
+            // dynamically because android.internal package is not part of public API
+            mPowerProfile_ = Class.forName(POWER_PROFILE_CLASS)
+                .getConstructor(Context::class.java).newInstance(this)
+        } catch (e: Exception) {
+
+            // Class not found?
+            e.printStackTrace()
+        }
+        try {
+
+            // Invoke PowerProfile method "getAveragePower" with param "battery.capacity"
+            batteryCapacity = Class
+                .forName(POWER_PROFILE_CLASS)
+                .getMethod("getAveragePower", String::class.java)
+                .invoke(mPowerProfile_, "battery.capacity") as Double
+        } catch (e: Exception) {
+
+            // Something went wrong
+            e.printStackTrace()
+        }
+        return batteryCapacity
     }
 
 
