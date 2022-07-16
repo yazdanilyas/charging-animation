@@ -29,4 +29,9 @@
     <string name="always">Always</string>
     <string name="animal_animations">Animal Animations</string>
     <string name="degreeSymbol">℃</string>
+    <string name="charging_type">Charging Type</string>
+    <string name="health">Health</string>
+    <string name="technology">Technology</string>
+    <string name="temperature">Temperature</string>
+    <string name="voltage">Voltage</string>
 </resources>

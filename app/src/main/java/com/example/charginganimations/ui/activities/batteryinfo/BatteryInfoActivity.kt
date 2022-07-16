@@ -96,7 +96,7 @@ class BatteryInfoActivity : AppCompatActivity() {
         mBinding.chargingTypeTv.text = chargingType
     }
 
-    private fun setChargingStatus() {
+    private fun setChargingStatus(): String {
         val statusLbl: String = when (intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
             BatteryManager.BATTERY_STATUS_CHARGING -> "charging"
             BatteryManager.BATTERY_STATUS_DISCHARGING -> "discharging"
@@ -105,6 +105,7 @@ class BatteryInfoActivity : AppCompatActivity() {
             BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "discharging"
             else -> "discharging"
         }
+        return statusLbl
 
     }
 
@@ -163,12 +164,12 @@ class BatteryInfoActivity : AppCompatActivity() {
         var batteryCapacity = 0.0
 
         // Power profile class name
-        val POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile"
+        val powerProfileClass = "com.android.internal.os.PowerProfile"
         try {
 
             // Get power profile class and create instance. We have to do this
             // dynamically because android.internal package is not part of public API
-            mPowerProfile_ = Class.forName(POWER_PROFILE_CLASS)
+            mPowerProfile_ = Class.forName(powerProfileClass)
                 .getConstructor(Context::class.java).newInstance(this)
         } catch (e: Exception) {
 
@@ -179,7 +180,7 @@ class BatteryInfoActivity : AppCompatActivity() {
 
             // Invoke PowerProfile method "getAveragePower" with param "battery.capacity"
             batteryCapacity = Class
-                .forName(POWER_PROFILE_CLASS)
+                .forName(powerProfileClass)
                 .getMethod("getAveragePower", String::class.java)
                 .invoke(mPowerProfile_, "battery.capacity") as Double
         } catch (e: Exception) {

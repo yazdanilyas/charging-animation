@@ -6,8 +6,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.charginganimations.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 object DialogUtils {
@@ -56,5 +58,12 @@ object DialogUtils {
 //        button.setBackgroundColor(Color.BLACK)
 //        button.setPadding(0, 0, 20, 0)
 //        button.setTextColor(Color.WHITE)
+    }
+
+    fun bottomSheetDialog(context: AppCompatActivity) {
+        val bottomSheetDialog = BottomSheetDialog(context)
+        val view = context.layoutInflater.inflate(R.layout.bottom_sheet_apply_animation, null)
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.show()
     }
 }

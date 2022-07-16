@@ -66,14 +66,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temperatureLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="@string/temperature"
+                app:layout_constraintEnd_toEndOf="@+id/tempImg"
+                app:layout_constraintStart_toStartOf="@id/tempImg"
+                app:layout_constraintTop_toBottomOf="@+id/tempImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/temperatureTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
-                android:text="Temperature"
+                android:text="34C"
                 app:layout_constraintEnd_toEndOf="@+id/tempImg"
                 app:layout_constraintStart_toStartOf="@id/tempImg"
-                app:layout_constraintTop_toBottomOf="@+id/tempImg" />
+                app:layout_constraintTop_toBottomOf="@+id/temperatureLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,6 +104,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/voltageLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="@string/voltage"
+                app:layout_constraintEnd_toEndOf="@+id/voltageImg"
+                app:layout_constraintStart_toStartOf="@id/voltageImg"
+                app:layout_constraintTop_toBottomOf="@+id/voltageImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/voltageTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +121,7 @@
                 android:text="Voltage"
                 app:layout_constraintEnd_toEndOf="@+id/voltageImg"
                 app:layout_constraintStart_toStartOf="@id/voltageImg"
-                app:layout_constraintTop_toBottomOf="@+id/voltageImg" />
+                app:layout_constraintTop_toBottomOf="@+id/voltageLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -123,14 +143,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/healthLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="@string/health"
+                app:layout_constraintEnd_toEndOf="@+id/healthImg"
+                app:layout_constraintStart_toStartOf="@id/healthImg"
+                app:layout_constraintTop_toBottomOf="@+id/healthImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/healthTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
-                android:text="Health"
+                android:text="Good"
                 app:layout_constraintEnd_toEndOf="@+id/healthImg"
                 app:layout_constraintStart_toStartOf="@id/healthImg"
-                app:layout_constraintTop_toBottomOf="@+id/healthImg" />
+                app:layout_constraintTop_toBottomOf="@+id/healthLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -152,6 +182,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/technologyLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="@string/technology"
+                app:layout_constraintEnd_toEndOf="@+id/technologyImg"
+                app:layout_constraintStart_toStartOf="@id/technologyImg"
+                app:layout_constraintTop_toBottomOf="@+id/technologyImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/technologyTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +199,7 @@
                 android:text="Technology"
                 app:layout_constraintEnd_toEndOf="@+id/technologyImg"
                 app:layout_constraintStart_toStartOf="@id/technologyImg"
-                app:layout_constraintTop_toBottomOf="@+id/technologyImg" />
+                app:layout_constraintTop_toBottomOf="@+id/technologyLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -181,7 +221,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/capacityTv"
+                android:id="@+id/capacityLabelTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
@@ -189,6 +229,16 @@
                 app:layout_constraintEnd_toEndOf="@+id/capacityImg"
                 app:layout_constraintStart_toStartOf="@id/capacityImg"
                 app:layout_constraintTop_toBottomOf="@+id/capacityImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/capacityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="4300 mAh"
+                app:layout_constraintEnd_toEndOf="@+id/capacityImg"
+                app:layout_constraintStart_toStartOf="@id/capacityImg"
+                app:layout_constraintTop_toBottomOf="@+id/capacityLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -210,14 +260,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chargingTypeLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="@string/charging_type"
+                app:layout_constraintEnd_toEndOf="@+id/chargingTypeImg"
+                app:layout_constraintStart_toStartOf="@id/chargingTypeImg"
+                app:layout_constraintTop_toBottomOf="@+id/chargingTypeImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/chargingTypeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
-                android:text="Charging Type"
+                android:text="USB"
                 app:layout_constraintEnd_toEndOf="@+id/chargingTypeImg"
                 app:layout_constraintStart_toStartOf="@id/chargingTypeImg"
-                app:layout_constraintTop_toBottomOf="@+id/chargingTypeImg" />
+                app:layout_constraintTop_toBottomOf="@+id/chargingTypeLabelTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
