@@ -34,4 +34,7 @@
     <string name="technology">Technology</string>
     <string name="temperature">Temperature</string>
     <string name="voltage">Voltage</string>
+    <string name="anim_apply_lock_screen">Animation Applied on LockScreen</string>
+    <string name="anim_applied_charging_screen">Animation applied on charging screen</string>
+    <string name="anim_applied_both_screen">Animation applied on both screen</string>
 </resources>

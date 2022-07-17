@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import com.example.charginganimations.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -60,10 +61,34 @@ object DialogUtils {
 //        button.setTextColor(Color.WHITE)
     }
 
-    fun bottomSheetDialog(context: AppCompatActivity) {
+    fun bottomSheetDialog(context: AppCompatActivity, sheetListener: BottomSheetListener) {
         val bottomSheetDialog = BottomSheetDialog(context)
         val view = context.layoutInflater.inflate(R.layout.bottom_sheet_apply_animation, null)
+        val lockScreenView = view.findViewById<CardView>(R.id.lockScreenView)
+        val chargingScreenView = view.findViewById<CardView>(R.id.chargingScreenView)
+        val bothScreenView = view.findViewById<CardView>(R.id.bothScreenView)
+        val cancelView = view.findViewById<CardView>(R.id.cancelView)
+        lockScreenView.setOnClickListener {
+            sheetListener.onLockScreenClick(bottomSheetDialog)
+        }
+        chargingScreenView.setOnClickListener {
+            sheetListener.onChargingScreenClick(bottomSheetDialog)
+        }
+        bothScreenView.setOnClickListener {
+            sheetListener.onBothClick(bottomSheetDialog)
+        }
+        cancelView.setOnClickListener {
+            sheetListener.onCancel(bottomSheetDialog)
+        }
+
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
+    }
+
+    interface BottomSheetListener {
+        fun onLockScreenClick(bottomSheetDialog: BottomSheetDialog)
+        fun onChargingScreenClick(bottomSheetDialog: BottomSheetDialog)
+        fun onBothClick(bottomSheetDialog: BottomSheetDialog)
+        fun onCancel(bottomSheetDialog: BottomSheetDialog)
     }
 }

@@ -10,4 +10,7 @@ object Constants {
     const val ANIM_HEARTS = "Hearts"
     const val ANIM_FLOWERS = "Flowers"
     const val ANIM_ANIMALS = "Animals"
+    const val APPLY_LOCK_SCREEN: Int = 1
+    const val APPLY_CHARGING_SCREEN: Int = 2
+    const val APPLY_BOTH_SCREEN: Int = 3
 }

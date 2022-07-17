@@ -65,6 +65,7 @@ class AllAnimationsActivity : AppCompatActivity() {
         }
 
     }
+
     private fun setRecyclerAdapter() {
         mAdapter = AnimationsAdapter(animsDataSet, recyclerItemClickListener)
 //        mAdapter = AnimationPreviewAdapter(viewModel.animations as ArrayList<Int>)

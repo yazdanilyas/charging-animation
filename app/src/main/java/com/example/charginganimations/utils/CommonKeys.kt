@@ -13,4 +13,5 @@ object CommonKeys {
     const val KEY_ALWAYS: String = "KEY_ALWAYS"
     const val KEY_BATTERY_LEVEL: String = "KEY_BATTERY_LEVEL"
     const val KEY_NEW_USER: String = "KEY_NEW_USER"
+    const val KEY_APPLY_ON: String = "KEY_APPLY_ON"
 }

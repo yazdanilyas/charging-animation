@@ -14,6 +14,7 @@ import com.example.charginganimations.services.ChargingService
 import com.example.charginganimations.utils.CommonKeys
 import com.example.charginganimations.utils.Constants
 import com.example.charginganimations.utils.PrefUtils
+import com.jaredrummler.android.colorpicker.ColorPickerDialog
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivitySettingBinding
@@ -63,6 +64,9 @@ class SettingActivity : AppCompatActivity() {
         }
         mBinding.durationArrowImg.setOnClickListener {
             animationDurationPopUp(it)
+        }
+        mBinding.colorPickerView.setOnClickListener {
+            ColorPickerDialog.newBuilder().show(this@SettingActivity);
         }
     }
 

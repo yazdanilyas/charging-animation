@@ -47,6 +47,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
     // Lottie Files
     implementation "com.airbnb.android:lottie:3.4.0"
+    // Color Picker
+    implementation 'com.jaredrummler:colorpicker:1.1.0'
 
 
 
