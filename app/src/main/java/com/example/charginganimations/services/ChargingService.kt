@@ -7,23 +7,34 @@ import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.charginganimations.R
+import com.example.charginganimations.receivers.LockScreenReceiver
 import com.example.charginganimations.receivers.PowerConnectionReceiver
+import com.example.charginganimations.utils.CommonKeys
 import com.example.charginganimations.utils.Constants
+import com.example.charginganimations.utils.PrefUtils
 
 class ChargingService : Service() {
     private val NOTIFICATION_CHANNEL_ID: String = "chargingChannelId"
     private val powerConnectionReceiver = PowerConnectionReceiver()
+    private val lockScreenReceiver = LockScreenReceiver()
+    private var animScreen: Int = 0
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 
     override fun onCreate() {
         super.onCreate()
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
-        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
-        this.registerReceiver(powerConnectionReceiver, intentFilter)
+        animScreen = PrefUtils.getInt(this, CommonKeys.KEY_APPLY_ON)
+        if (animScreen == Constants.APPLY_CHARGING_SCREEN) {
+            registerChargingReceiver()
+        } else if (animScreen == Constants.APPLY_LOCK_SCREEN) {
+            registerLockScreenReceiver()
+        } else {
+            registerChargingReceiver()
+            registerLockScreenReceiver()
+        }
     }
+
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action.equals(Constants.ACTION_KILL)) {
@@ -36,7 +47,15 @@ class ChargingService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(powerConnectionReceiver)
+        if (animScreen == Constants.APPLY_CHARGING_SCREEN) {
+            unregisterReceiver(powerConnectionReceiver)
+        } else if (animScreen == Constants.APPLY_LOCK_SCREEN) {
+            unregisterReceiver(lockScreenReceiver)
+        } else {
+            unregisterReceiver(powerConnectionReceiver)
+            unregisterReceiver(lockScreenReceiver)
+        }
+
     }
 
     private fun createNotification() {
@@ -72,5 +91,19 @@ class ChargingService : Service() {
             .build()
 
         startForeground(notificationId, notification)
+    }
+
+    private fun registerLockScreenReceiver() {
+        val lockScreenFilter = IntentFilter()
+        lockScreenFilter.addAction(Intent.ACTION_SCREEN_ON)
+        lockScreenFilter.addAction(Intent.ACTION_SCREEN_OFF)
+        this.registerReceiver(lockScreenReceiver, lockScreenFilter)
+    }
+
+    private fun registerChargingReceiver() {
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        this.registerReceiver(powerConnectionReceiver, intentFilter)
     }
 }

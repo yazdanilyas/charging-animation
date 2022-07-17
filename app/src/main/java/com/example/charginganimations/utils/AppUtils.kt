@@ -20,7 +20,7 @@ object AppUtils {
 
     fun setStatusBarColor(activity: AppCompatActivity, colorStatusBar: Int) {
         val window = activity.window
-        window.statusBarColor = ContextCompat.getColor(activity, colorStatusBar)
+        window.statusBarColor = colorStatusBar//ContextCompat.getColor(activity, colorStatusBar)
     }
 
     fun setNavButtonBarColor(activity: AppCompatActivity, colorNavBar: Int) {

@@ -1,6 +1,7 @@
 package com.example.charginganimations.ui.activities.animationpreview
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.charginganimations.R
@@ -51,9 +52,17 @@ class AnimationPreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityAnimationPreviewBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        AppUtils.setStatusBarColor(this, R.color.blue)
+        setStatusBarAndBackgroundColor()
         previewAnimation()
         setListeners()
+    }
+
+    private fun setStatusBarAndBackgroundColor() {
+        val selectedColor =
+            PrefUtils.getInt(this@AnimationPreviewActivity, CommonKeys.KEY_SELECTED_COLOR)
+        Log.d("TAG", "setStatusBarAndBackgroundColor: $selectedColor")
+        AppUtils.setStatusBarColor(this, selectedColor)
+        mBinding.root.setBackgroundColor(selectedColor)
     }
 
     private fun setListeners() {

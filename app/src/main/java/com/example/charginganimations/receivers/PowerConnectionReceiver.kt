@@ -18,7 +18,7 @@ class PowerConnectionReceiver : BroadcastReceiver() {
 
             }
             Intent.ACTION_POWER_DISCONNECTED -> {
-                Toast.makeText(context, "desconnedt", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "disconnected", Toast.LENGTH_LONG).show()
                 val localBroadcastManager = context?.let { LocalBroadcastManager.getInstance(it) }
                 localBroadcastManager?.sendBroadcast(Intent("ACTION_FINISH"))
             }

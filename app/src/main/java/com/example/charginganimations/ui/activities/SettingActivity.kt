@@ -15,8 +15,9 @@ import com.example.charginganimations.utils.CommonKeys
 import com.example.charginganimations.utils.Constants
 import com.example.charginganimations.utils.PrefUtils
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 
-class SettingActivity : AppCompatActivity() {
+class SettingActivity : AppCompatActivity(), ColorPickerDialogListener {
     private lateinit var mBinding: ActivitySettingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,8 @@ class SettingActivity : AppCompatActivity() {
                 mBinding.durationTv.text = getString(R.string.always)
             }
         }
+        val color = PrefUtils.getInt(this, CommonKeys.KEY_SELECTED_COLOR)
+        mBinding.selectedColorView.setBackgroundColor(color)
     }
 
     private fun setListeners() {
@@ -66,7 +69,7 @@ class SettingActivity : AppCompatActivity() {
             animationDurationPopUp(it)
         }
         mBinding.colorPickerView.setOnClickListener {
-            ColorPickerDialog.newBuilder().show(this@SettingActivity);
+            ColorPickerDialog.newBuilder().show(this@SettingActivity)
         }
     }
 
@@ -191,6 +194,15 @@ class SettingActivity : AppCompatActivity() {
 //        mBinding.batteryLevelSlider.addOnChangeListener(Slider.OnChangeListener { slider, value, fromUser ->
 //            PrefUtils.setInt(this, CommonKeys.KEY_BATTERY_LEVEL, value.toInt())
 //        })
+
+    }
+
+    override fun onColorSelected(dialogId: Int, color: Int) {
+        mBinding.selectedColorView.setBackgroundColor(color)
+        PrefUtils.setInt(this@SettingActivity, CommonKeys.KEY_SELECTED_COLOR, color)
+    }
+
+    override fun onDialogDismissed(dialogId: Int) {
 
     }
 }

@@ -181,6 +181,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingHorizontal="@dimen/_5dp"
         android:id="@+id/colorPickerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50dp"
@@ -198,7 +199,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/colorView"
+            android:id="@+id/selectedColorView"
             android:layout_width="@dimen/_50dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
