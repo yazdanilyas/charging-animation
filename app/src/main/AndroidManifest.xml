@@ -36,6 +36,7 @@
             android:name=".ui.activities.allanims.AllAnimationsActivity"
             android:exported="false" />
         <activity
+            android:showOnLockScreen="true"
             android:name=".ui.activities.plugin.ChargingActivity"
             android:exported="false"
             android:theme="@style/FullScreenActivity" />
@@ -63,6 +64,7 @@
             android:exported="true" />
 
         <receiver android:name=".receivers.PowerConnectionReceiver" />
+        <receiver android:name=".receivers.LockScreenReceiver" />
     </application>
 
 </manifest>
